@@ -9,7 +9,7 @@ export class AssessmentService {
 
 addAssessmentUrl = '/api/assessment/';
 getAssessmentByIdUrl = 'api/assessment/id/';
-updateAssessmentUrl = 'api/assessment/id/';
+updateAssessmentByIdUrl = 'api/assessment/id/';
 getAssessmentAllUrl = '/api/assessment/all'
 deleteAssessmentByIdUrl = 'api/assessment/id/';
   constructor(private http: HttpClient) { }
@@ -24,6 +24,14 @@ deleteAssessmentByIdUrl = 'api/assessment/id/';
 
   getAllAssessmentRequest(): Observable<any> {
     return this.http.get<any>(this.getAssessmentAllUrl);
+  }
+
+  updateAssessmentRequest(data: any,id:number): Observable<any> {
+    return this.http.put<any>(this.updateAssessmentByIdUrl+id, data);
+  }
+
+  deleteAssessmentRequest(id: number): Observable<any> {
+    return this.http.delete<any>(this.deleteAssessmentByIdUrl+id);
   }
 
 }

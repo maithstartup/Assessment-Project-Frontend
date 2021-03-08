@@ -3,11 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { from } from 'rxjs';
 import {LoginComponent} from './page/login/login.component';
 import {AssessmentComponent} from './page/assessment/assessment.component'
+import {IndividualAssessmentComponent} from './page/individual-assessment/individual-assessment.component'
+import {CandidateAssessmentComponent} from './page/candidate-assessment/candidate-assessment.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'assessment', component: AssessmentComponent },
+  { path: 'assessments', component: AssessmentComponent },
+  { path: 'individual', component: IndividualAssessmentComponent },
+  { path: 'score', component: CandidateAssessmentComponent },
 ];
 
 @NgModule({

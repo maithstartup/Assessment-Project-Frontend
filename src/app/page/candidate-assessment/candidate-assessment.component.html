@@ -1,0 +1,29 @@
+<p>candidate-assessment works!</p>
+<button mat-button color="accent" class="text-upper" (click)="addCandidateAssessment()">add</button>
+<div class="row">
+    <div class="col-md-4 col-md-offset-4" >
+        <form [formGroup]="profileForm">
+            <div class="form-group">
+              <label> Candidate Id:</label>
+                <input type="number" class="form-control" formControlName="candidateId">  
+            </div>
+  
+            <div class="form-group">
+            <label>Assessment Id:</label>
+              <input type="number" class="form-control" formControlName="assessmentId">
+            </div>
+
+            <div class="form-group">
+                <label>Score:</label>
+                  <input type="number" class="form-control" formControlName="score">
+                </div>
+  
+  
+            <div class="form-group">
+              <button class="btn btn-primary" (click)="addCandidateAssessment()">Add Score</button>
+            </div>
+  
+          </form>
+    </div>
+  
+  </div>
