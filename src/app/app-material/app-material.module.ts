@@ -21,8 +21,6 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatOption } from '@angular/material/core';
-import { MatIconRegistry } from '@angular/material/icon';
 
 
 @NgModule({
@@ -49,8 +47,6 @@ import { MatIconRegistry } from '@angular/material/icon';
     MatDialogModule,
     MatCheckboxModule,
     MatSelectModule,
-    MatOption,
-    MatIconRegistry
 
   ],
 })

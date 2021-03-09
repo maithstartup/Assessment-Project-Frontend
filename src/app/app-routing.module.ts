@@ -5,6 +5,7 @@ import {LoginComponent} from './page/login/login.component';
 import {AssessmentComponent} from './page/assessment/assessment.component'
 import {IndividualAssessmentComponent} from './page/individual-assessment/individual-assessment.component'
 import {CandidateAssessmentComponent} from './page/candidate-assessment/candidate-assessment.component'
+import {TrainingMaterialComponent} from './page/training-material/training-material.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -12,6 +13,9 @@ const routes: Routes = [
   { path: 'assessments', component: AssessmentComponent },
   { path: 'individual', component: IndividualAssessmentComponent },
   { path: 'score', component: CandidateAssessmentComponent },
+  { path: 'material', component: TrainingMaterialComponent },
+  
+
 ];
 
 @NgModule({
