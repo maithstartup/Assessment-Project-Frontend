@@ -31,8 +31,8 @@ export class IndividualAssessmentComponent implements OnInit {
     private assessmentService: AssessmentService,) { }
     assessmentId:number
   ngOnInit(): void {
-    this.assessmentId=12
-    //this.getAssessment();
+    this.assessmentId=1
+    this.getAssessment();
     //this.deleteAssessment();
     //this.updateAssessment();
     
@@ -40,7 +40,7 @@ export class IndividualAssessmentComponent implements OnInit {
   }
   getAssessment() {
     console.log(this.assessment);
-    this.assessmentService.getAssessmentRequest(12)
+    this.assessmentService.getAssessmentRequest(this.assessmentId)
       .subscribe(
         (res) => {
           this.assessment = res;

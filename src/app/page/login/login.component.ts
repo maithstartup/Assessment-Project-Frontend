@@ -14,6 +14,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Trainer } from 'src/app/model/Trainer';
+import { TrainerService } from 'src/app/service/trainer/trainer.service';
 
 const googleLogoURL =
   "https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg";
@@ -25,20 +26,21 @@ const googleLogoURL =
 })
 export class LoginComponent implements OnInit {
 
-  customer: Partial<Trainer> = {};
+  trainer: Trainer;
   errorMessage: string = '';
   hide: boolean;
 
   loginForm = this.fb.group({
-    emailId: ['', [Validators.email, Validators.required]],
-    password: ['', [Validators.required]],
+    trainerEmail: ['', [Validators.email, Validators.required]],
+    trainerPassword: ['', [Validators.required]],
   });
 
   auth2: any;
 
   @ViewChild('loginRef', { static: true }) loginElement: ElementRef;
 
-  constructor(private fb: FormBuilder,private router: Router) { }
+  constructor(private fb: FormBuilder,private router: Router,
+    private trainerService: TrainerService) { }
 
   ngOnInit(): void {
   }
@@ -69,9 +71,27 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.loginForm.valid) {
-    console.log("logged")  
+        this.trainerService.trainerLoginRequest(this.loginForm.value).subscribe(
+          (res) => {
+            this.trainer = res;
+            this.loginForm.reset;
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('token', JSON.stringify(this.trainer));
+            localStorage.setItem('cart', JSON.stringify([]));
+            this.router.navigateByUrl('/assessments');
+          },
+          (error) => {
+            if (typeof error.error == typeof 'string')
+              this.errorMessage = error.error;
+            // else {
+            //   this.trainer = error.error;
+            //   console.log(this.trainer);
+  
+            // }
+          }
+        );
+    }
   }
-}
 
   prepareLoginButton() {
 

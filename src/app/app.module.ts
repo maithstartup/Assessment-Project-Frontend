@@ -14,6 +14,8 @@ import { IndividualAssessmentComponent } from './page/individual-assessment/indi
 import { CandidateAssessmentComponent } from './page/candidate-assessment/candidate-assessment.component';
 import { TrainingMaterialComponent } from './page/training-material/training-material.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ShowAssessmentComponent } from './component/show-assessment/show-assessment.component';
+import { ShowQuizComponent } from './component/show-quiz/show-quiz.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavBarComponent,
     IndividualAssessmentComponent,
     CandidateAssessmentComponent,
-    TrainingMaterialComponent
+    TrainingMaterialComponent,
+    ShowAssessmentComponent,
+    ShowQuizComponent
   ],
   imports: [
     BrowserModule,

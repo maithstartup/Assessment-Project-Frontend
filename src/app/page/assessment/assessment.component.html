@@ -1,9 +1,10 @@
 <p>assessment works!</p>
-
+<app-nav-bar>
+</app-nav-bar>
 <table>
     <tr *ngFor="let assessment of assessmentList">
       <td>
-        {{assessment.assessmentName}}
+        <app-show-assessment [data]="assessment" ></app-show-assessment>
       </td>
     </tr>
   </table>

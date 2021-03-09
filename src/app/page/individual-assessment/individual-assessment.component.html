@@ -1,14 +1,23 @@
-<p>individual-assessment works!</p>
-hey
-
 <mat-card>
     <mat-card-title>{{assessment.assessmentName}}</mat-card-title>
-    <mat-card-subtitle>{{assessment.description}}</mat-card-subtitle>
+    <mat-card-subtitle>Description :{{assessment.description}} </mat-card-subtitle>
+    <mat-card-subtitle>Score :{{assessment.score}} </mat-card-subtitle>
     <mat-divider></mat-divider>
     <mat-card-content>
+        Description:{{assessment.description}}
     </mat-card-content>
     <mat-card-actions>
         <button mat-button color="accent" class="text-upper" (click)="updateAssessment()">update</button>
         <button mat-button class="text-upper" (click)="deleteAssessment()">Delete</button>
     </mat-card-actions>
 </mat-card>
+<h2>{{assessment.type}}</h2>
+<table>
+    <tr *ngFor="let quiz of assessment.quizzes">
+      <td>
+        <app-show-quiz [quiz]="quiz"></app-show-quiz>
+        {{quiz.quizId}}
+      </td>
+    </tr>
+  </table>
+
