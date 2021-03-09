@@ -16,6 +16,7 @@ import { TrainingMaterialComponent } from './page/training-material/training-mat
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShowAssessmentComponent } from './component/show-assessment/show-assessment.component';
 import { ShowQuizComponent } from './component/show-quiz/show-quiz.component';
+import { ShowAssignmentComponent } from './component/show-assignment/show-assignment.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { ShowQuizComponent } from './component/show-quiz/show-quiz.component';
     CandidateAssessmentComponent,
     TrainingMaterialComponent,
     ShowAssessmentComponent,
-    ShowQuizComponent
+    ShowQuizComponent,
+    ShowAssignmentComponent
   ],
   imports: [
     BrowserModule,

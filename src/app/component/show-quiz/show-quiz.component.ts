@@ -21,10 +21,10 @@ export class ShowQuizComponent implements OnInit {
 
   updationForm = this.fb.group({
     question: ['', [Validators.required]],
-    option1: ['', [Validators.required]],
-    option2: ['', [Validators.required]],
-    option3: ['', [Validators.required]],
-    option4: ['', [Validators.required]],
+    optionA: ['', [Validators.required]],
+    optionB: ['', [Validators.required]],
+    optionC: ['', [Validators.required]],
+    optionD: ['', [Validators.required]],
     answer: ['', [Validators.required]],
     score: ['', [Validators.required]],
   });
@@ -36,10 +36,10 @@ export class ShowQuizComponent implements OnInit {
   setDefault() {
     this.updationForm.setValue({
       question: this.quiz.question,
-      option1: this.quiz.option1,
-      option2: this.quiz.option2,
-      option3: this.quiz.option3,
-      option4: this.quiz.option4,
+      optionA: this.quiz.optionA,
+      optionB: this.quiz.optionB,
+      optionC: this.quiz.optionC,
+      optionD: this.quiz.optionD,
       answer: this.quiz.answer,
       score: this.quiz.score,
     });
@@ -54,10 +54,10 @@ export class ShowQuizComponent implements OnInit {
       console.log(this.quiz);
 
       this.quiz.question = this.updationForm.controls['question'].value;
-      this.quiz.option1 = this.updationForm.controls['option1'].value;
-      this.quiz.option2 = this.updationForm.controls['option2'].value;
-      this.quiz.option3 = this.updationForm.controls['option3'].value;
-      this.quiz.option4 = this.updationForm.controls['option4'].value;
+      this.quiz.optionA = this.updationForm.controls['optionA'].value;
+      this.quiz.optionB = this.updationForm.controls['optionB'].value;
+      this.quiz.optionC = this.updationForm.controls['optionC'].value;
+      this.quiz.optionD = this.updationForm.controls['optionD'].value;
       this.quiz.answer = this.updationForm.controls['answer'].value;
       this.quiz.score = this.updationForm.controls['score'].value;
 
@@ -67,6 +67,7 @@ export class ShowQuizComponent implements OnInit {
   }
 
   removeQuiz() {
+    console.log("deleting quiz")
     this.removeItem.emit(this.quiz.quizId);
   }
 }
