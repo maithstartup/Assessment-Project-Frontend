@@ -11,6 +11,8 @@ import { Assignment } from 'src/app/model/Assignment';
 import { AssignmentService } from 'src/app/service/assignment/assignment.service';
 import { QuizService } from 'src/app/service/quiz/quiz.service';
 import { Quiz } from 'src/app/model/Quiz';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-individual-assessment',
@@ -20,6 +22,8 @@ import { Quiz } from 'src/app/model/Quiz';
 export class IndividualAssessmentComponent implements OnInit {
   assessment:Assessment;
   pageLoaded: boolean = false;
+
+  toggle:boolean=true;
 
   quizBool: boolean = false;
   assignBool: boolean = false;
@@ -39,13 +43,21 @@ export class IndividualAssessmentComponent implements OnInit {
 
     trainerId:2
     }
+
+    updationForm = this.fb.group({
+      assessmentName: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+    });
+
   constructor(private http: HttpClient,
     private assessmentService: AssessmentService,
     private assignmentService:AssignmentService,
-    private quizService: QuizService) { }
+    private quizService: QuizService,
+    private fb: FormBuilder,
+    private router: Router) { }
     assessmentId:number
   ngOnInit(): void {
-    this.assessmentId=1;
+    this.assessmentId=20;
     this.getAssessment();
     
     //this.deleteAssessment();
@@ -94,7 +106,11 @@ export class IndividualAssessmentComponent implements OnInit {
   }
 
   updateAssessment() {
-    this.assessmentService.updateAssessmentRequest(this.data,16)
+    this.assessment.assessmentName=this.updationForm.value.assessmentName;
+    this.assessment.description=this.updationForm.value.description;
+    console.log(this.updationForm.value)
+    console.log("heyy")
+    this.assessmentService.updateAssessmentRequest(this.assessment,this.assessment.assessmentId)
       .subscribe(
         (res) => {
           this.assessment = res;
@@ -110,7 +126,7 @@ export class IndividualAssessmentComponent implements OnInit {
 
   deleteAssessment() {
     console.log("deleting");
-    this.assessmentService.deleteAssessmentRequest(12)
+    this.assessmentService.deleteAssessmentRequest(this.assessment.assessmentId)
       .subscribe(
         (res) => {
           this.assessment = res;
@@ -121,6 +137,19 @@ export class IndividualAssessmentComponent implements OnInit {
           console.log(err);
         }
       );
+      this.router.navigateByUrl('/assessments');
+  }
+
+  editAssessment(){
+    this.toggle = false;
+    this.setDefault()
+  }
+
+  setDefault() {
+    this.updationForm.setValue({
+      assessmentName: this.assessment.assessmentName,
+      description: this.assessment.description,
+    });
   }
 
   updatedAssignmentHandler(assignment: Assignment) {
@@ -134,7 +163,10 @@ export class IndividualAssessmentComponent implements OnInit {
           console.log(err);
         }
       );
+      this.toggle=true;
+      window.location.reload();
   }
+
 
   deleteAssignmentHandler(id: number) {
     this.assignmentService.deleteAssignmentRequest(id).subscribe(

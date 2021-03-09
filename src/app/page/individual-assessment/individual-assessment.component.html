@@ -1,3 +1,4 @@
+<div *ngIf="toggle; else elseBlock">
 <mat-card>
     <mat-card-title>{{assessment.assessmentName}}</mat-card-title>
     <mat-card-subtitle>Description :{{assessment.description}} </mat-card-subtitle>
@@ -7,12 +8,34 @@
         Description:{{assessment.description}}
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button color="accent" class="text-upper" (click)="updateAssessment()">update</button>
+        <button mat-button color="accent" class="text-upper" (click)="editAssessment()">edit</button>
         <button mat-button class="text-upper" (click)="deleteAssessment()">Delete</button>
     </mat-card-actions>
 </mat-card>
 <h2>{{assessment.type}}</h2>
+</div>
+<ng-template #elseBlock>
+  "helloworld"
+  <form [formGroup]="updationForm">
+  <mat-card-header>
+    <mat-card-title>
+      Title
+      <mat-form-field appearance="outline">
+        <input type="text" matInput formControlName="assessmentName" />
+      </mat-form-field>
+    </mat-card-title>
+  </mat-card-header>
 
+  <mat-card-content>
+    <p>Description
+      <mat-form-field appearance="outline" class="textarea">
+        <input type="text" matInput formControlName="description" />
+      </mat-form-field>
+    </p>
+  </mat-card-content>
+  <button mat-button color="accent" class="text-upper" (click)="updateAssessment()">save</button>
+</form>
+</ng-template>
 <div *ngIf="quizBool">
 <table>
     <tr *ngFor="let quiz of assessment.quizzes">
