@@ -21,5 +21,4 @@ export class TrainerService {
     return this.http.post<any>(this.trainerLoginUrl, data);
   }
 
-
 }
