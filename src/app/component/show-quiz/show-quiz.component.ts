@@ -26,7 +26,7 @@ export class ShowQuizComponent implements OnInit {
     optionC: ['', [Validators.required]],
     optionD: ['', [Validators.required]],
     answer: ['', [Validators.required]],
-    score: ['', [Validators.required]],
+    quizScore: ['', [Validators.required]],
   });
 
   constructor(private fb: FormBuilder) {}
@@ -34,6 +34,7 @@ export class ShowQuizComponent implements OnInit {
   ngOnInit(): void {}
 
   setDefault() {
+    console.log(this.quiz)
     this.updationForm.setValue({
       question: this.quiz.question,
       optionA: this.quiz.optionA,
@@ -41,7 +42,7 @@ export class ShowQuizComponent implements OnInit {
       optionC: this.quiz.optionC,
       optionD: this.quiz.optionD,
       answer: this.quiz.answer,
-      score: this.quiz.score,
+      quizScore: this.quiz.quizScore,
     });
   }
   enableEdit() {
@@ -59,7 +60,7 @@ export class ShowQuizComponent implements OnInit {
       this.quiz.optionC = this.updationForm.controls['optionC'].value;
       this.quiz.optionD = this.updationForm.controls['optionD'].value;
       this.quiz.answer = this.updationForm.controls['answer'].value;
-      this.quiz.score = this.updationForm.controls['score'].value;
+      this.quiz.quizScore = this.updationForm.controls['quizScore'].value;
 
       this.updatedQuiz.emit(this.quiz);
       this.toggle = !this.toggle;

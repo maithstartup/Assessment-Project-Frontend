@@ -1,7 +1,6 @@
-hey {{quiz.question}}
 <div *ngIf="toggle; else elseBlock">
     part1
-    <mat-card class="example-card">
+    <mat-card class="example1-card">
       <div class="toolbar">
         <h2 class="inline">question {{ quiz.quizId }}</h2>
         <button mat-button class="inline" (click)="removeQuiz()">
@@ -40,7 +39,7 @@ hey {{quiz.question}}
       </mat-card-content>
       <mat-card-actions>
         <button mat-button>Answer: {{ quiz.answer }}</button>
-        <mat-label class="score">Mark: {{ quiz.score }}</mat-label>
+        <mat-label class="score">Mark: {{ quiz.quizScore }}</mat-label>
       </mat-card-actions>
     </mat-card>
     <mat-divider></mat-divider>
@@ -48,7 +47,7 @@ hey {{quiz.question}}
   
   <ng-template #elseBlock>
     part2
-    <div>
+    <div class="dispaly">
       <form [formGroup]="updationForm" (ngSubmit)="saveQuiz()">
         <mat-card class="example-card">
           <div class="toolbar">
@@ -71,7 +70,7 @@ hey {{quiz.question}}
           </mat-card-header>
   
           <mat-card-content>
-            <mat-grid-list cols="2" rowHeight="10:1">
+            <mat-grid-list cols="5">
               <mat-grid-tile>
                 <mat-form-field appearance="outline">
                   <input type="text" matInput formControlName="optionA" />
@@ -104,10 +103,12 @@ hey {{quiz.question}}
             </mat-grid-list>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-button>Answer: {{ quiz.answer }}</button>
+            <mat-form-field >
+              <input type="number" matInput formControlName="answer" />
+            </mat-form-field>
   
             <mat-form-field class="score">
-              <input type="text" matInput formControlName="score" />
+              <input type="number" matInput formControlName="quizScore" />
             </mat-form-field>
           </mat-card-actions>
         </mat-card>

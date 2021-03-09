@@ -1,0 +1,17 @@
+.example-card{
+
+    background-color: aqua;
+
+}
+.example1-card{
+    background-color: aqua;
+    width: 400px;
+    height:200px;
+
+}
+mat-form-field{
+    background-color: brown;
+    width: 200px;
+    height:100px;
+    
+}

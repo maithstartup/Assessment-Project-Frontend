@@ -12,6 +12,7 @@
     </mat-card-actions>
 </mat-card>
 <h2>{{assessment.type}}</h2>
+
 <div *ngIf="quizBool">
 <table>
     <tr *ngFor="let quiz of assessment.quizzes">
@@ -27,10 +28,10 @@
 </div>
 
 <div *ngIf="assignBool">
+
 <table>
     <tr *ngFor="let assignment of assessment.assignments">
       <td>
-          hey
         <app-show-assignment 
         [assignment]="assignment" 
         (updatedAssignment)="updatedAssignmentHandler($event)"

@@ -149,15 +149,16 @@ export class IndividualAssessmentComponent implements OnInit {
   }
 
   updatedQuizHandler(quiz: Quiz) {
+    console.log("updatequiz")
     this.quizService.updateQuizRequest(quiz, quiz.quizId).subscribe(
       (res) => {
         this.quiz = res;
+        console.log(quiz);
       },
       (err) => {
         console.log(err);
       }
     );
-    console.log(quiz);
   }
   removeQuizHandler(id: number) {
     console.log("inside"+id)
