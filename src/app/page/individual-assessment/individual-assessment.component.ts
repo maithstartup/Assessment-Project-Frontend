@@ -57,7 +57,7 @@ export class IndividualAssessmentComponent implements OnInit {
     private router: Router) { }
     assessmentId:number
   ngOnInit(): void {
-    this.assessmentId=20;
+    this.assessmentId=4;
     this.getAssessment();
     
     //this.deleteAssessment();
@@ -116,6 +116,7 @@ export class IndividualAssessmentComponent implements OnInit {
           this.assessment = res;
           console.log(this.assessment);
           this.pageLoaded = true;
+          location.reload();
         },
         (err) => {
           console.log(err);
