@@ -61,7 +61,7 @@ export class IndividualAssessmentComponent implements OnInit {
     public dialog: MatDialog,) { }
     assessmentId:number
   ngOnInit(): void {
-    this.assessmentId=4;
+    this.assessmentId = Number(localStorage.getItem('assessmentId'))
     this.getAssessment();
     
     //this.deleteAssessment();
@@ -158,6 +158,7 @@ export class IndividualAssessmentComponent implements OnInit {
   }
 
   updatedAssignmentHandler(assignment: Assignment) {
+    console.log("hello")
     console.log(assignment);
     this.assignmentService.updateAssignmentRequest(assignment, assignment.assignmentId)
       .subscribe(

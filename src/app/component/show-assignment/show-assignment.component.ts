@@ -38,7 +38,7 @@ export class ShowAssignmentComponent implements OnInit {
   setDefault() {
     this.updationForm.setValue({
       question: this.assignment.question,
-      answer: this.assignment.assessmentId,
+      answer: this.assignment.answer,
       assignmentScore: this.assignment.assignmentScore,
     });
   }

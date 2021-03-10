@@ -18,6 +18,7 @@ import { ShowAssessmentComponent } from './component/show-assessment/show-assess
 import { ShowQuizComponent } from './component/show-quiz/show-quiz.component';
 import { ShowAssignmentComponent } from './component/show-assignment/show-assignment.component';
 import { AddAssignmentComponent } from './component/add-assignment/add-assignment.component';
+import { AddAssessmentComponent } from './component/add-assessment/add-assessment.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { AddAssignmentComponent } from './component/add-assignment/add-assignmen
     ShowAssessmentComponent,
     ShowQuizComponent,
     ShowAssignmentComponent,
-    AddAssignmentComponent
+    AddAssignmentComponent,
+    AddAssessmentComponent
   ],
   imports: [
     BrowserModule,

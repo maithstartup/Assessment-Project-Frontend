@@ -2,16 +2,14 @@
 <form [formGroup]="assignmentForm">
     <mat-card class="example-card">
 
-
-
-        <mat-card-content>
-            <p>
-                Question:
-              <mat-form-field appearance="outline" class="textarea">
-                <input type="text" matInput formControlName="question" />
-              </mat-form-field>
-            </p>
-          </mat-card-content>
+      <mat-card-header>
+        Question:
+        <mat-card-title>
+          <mat-form-field appearance="outline">
+            <input type="text" matInput formControlName="question" />
+          </mat-form-field>
+        </mat-card-title>
+      </mat-card-header>
 
       <mat-card-content>
         <p>

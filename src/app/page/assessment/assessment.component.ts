@@ -8,6 +8,7 @@ import {
 } from '@angular/material/dialog';
 import { Assessment } from 'src/app/model/Assessment';
 import { Router } from '@angular/router';
+import { AddAssessmentComponent } from 'src/app/component/add-assessment/add-assessment.component';
 
 
 @Component({
@@ -19,11 +20,13 @@ export class AssessmentComponent implements OnInit {
 
   assessmentList:Array<Assessment>;
   pageLoaded: boolean = false;
+  assessment:Partial<Assessment>={}
 
   constructor(
     private http: HttpClient,
     private assessmentService: AssessmentService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -43,6 +46,40 @@ export class AssessmentComponent implements OnInit {
           console.log(err);
         }
       );
+  }
+
+  addAssignemntDialog() {
+    console.log("hey me")
+    const dialogRef = this.dialog.open(AddAssessmentComponent, {
+      width: '600px',
+      data: this.assessment
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      console.log(result)
+      if (
+        result != undefined &&
+        result.type &&
+        result.assessmentName &&
+        result.description
+      ) {
+        this.assessment = result;
+
+        this.assessmentService.addAssessmentRequest(this.assessment)
+          .subscribe(
+            (res) => {
+              console.log(res);
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+          location.reload();
+      } else {
+        console.log("cannot");
+      }
+    });
   }
 
   showHandler(id:number){
