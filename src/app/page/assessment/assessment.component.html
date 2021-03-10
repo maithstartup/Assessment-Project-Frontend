@@ -4,7 +4,8 @@
 <table>
     <tr *ngFor="let assessment of assessmentList">
       <td>
-        <app-show-assessment [data]="assessment" ></app-show-assessment>
+        <app-show-assessment [data]="assessment" 
+                      (show)="showHandler($event)"></app-show-assessment>
       </td>
     </tr>
   </table>

@@ -16,11 +16,15 @@ export class ShowAssessmentComponent implements OnInit {
   name;
 
   @Output()
-  selectedAssessment: EventEmitter<number>;
+  show:EventEmitter<number> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+  
+  showAssessment(){
+    this.show.emit(this.data.assessmentId);
   }
 
 }

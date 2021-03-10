@@ -7,6 +7,7 @@ import {
   MatDialogModule,
 } from '@angular/material/dialog';
 import { Assessment } from 'src/app/model/Assessment';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class AssessmentComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private assessmentService: AssessmentService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +43,12 @@ export class AssessmentComponent implements OnInit {
           console.log(err);
         }
       );
+  }
+
+  showHandler(id:number){
+    console.log(id)
+    localStorage.setItem('assessmentId', String(id));
+    this.router.navigateByUrl('/individual');
   }
 
 }
