@@ -36,6 +36,7 @@
   <button mat-button color="accent" class="text-upper" (click)="updateAssessment()">save</button>
 </form>
 </ng-template>
+
 <div *ngIf="quizBool">
 <table>
     <tr *ngFor="let quiz of assessment.quizzes">
@@ -51,8 +52,13 @@
 </div>
 
 <div *ngIf="assignBool">
-
-<table>
+  
+  <button mat-button class="inline" 
+   (click)="addAssignemntDialog()" >
+    <mat-icon>add</mat-icon>
+    <mat-label>add</mat-label>
+  </button>
+  <table>
     <tr *ngFor="let assignment of assessment.assignments">
       <td>
         <app-show-assignment 

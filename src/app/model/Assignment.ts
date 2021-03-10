@@ -1,4 +1,5 @@
-export interface Assignment{
+export interface Assignment
+{
 
 assignmentId:number;
 

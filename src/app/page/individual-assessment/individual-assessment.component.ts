@@ -13,6 +13,9 @@ import { QuizService } from 'src/app/service/quiz/quiz.service';
 import { Quiz } from 'src/app/model/Quiz';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NavBarComponent } from 'src/app/component/nav-bar/nav-bar.component';
+import { ShowAssessmentComponent } from 'src/app/component/show-assessment/show-assessment.component';
+import { AddAssignmentComponent } from 'src/app/component/add-assignment/add-assignment.component';
 
 @Component({
   selector: 'app-individual-assessment',
@@ -30,8 +33,8 @@ export class IndividualAssessmentComponent implements OnInit {
   projectBool: boolean = false;
   type:string;
 
-  assignment:Assignment;
-  quiz:Quiz;
+  assignment:Partial<Assignment>={}
+   quiz:Partial<Quiz>={};
   data = {
     assessmentName:"temp-edited-assesment",
 
@@ -54,7 +57,8 @@ export class IndividualAssessmentComponent implements OnInit {
     private assignmentService:AssignmentService,
     private quizService: QuizService,
     private fb: FormBuilder,
-    private router: Router) { }
+    private router: Router,
+    public dialog: MatDialog,) { }
     assessmentId:number
   ngOnInit(): void {
     this.assessmentId=4;
@@ -204,5 +208,40 @@ export class IndividualAssessmentComponent implements OnInit {
       }
     );
     location.reload();
+  }
+
+  addAssignemntDialog() {
+    console.log("hey me")
+    const dialogRef = this.dialog.open(AddAssignmentComponent, {
+      width: '600px',
+      data: this.assignment,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      console.log(result)
+      if (
+        result != undefined &&
+        result.question &&
+        result.answer &&
+        result.assignmentScore
+      ) {
+        this.assignment = result;
+        this.assignment.assessmentId =this.assessment.assessmentId
+
+        this.assignmentService.addAssignmentRequest(this.assignment)
+          .subscribe(
+            (res) => {
+              console.log(res);
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+          location.reload();
+      } else {
+        console.log("cannot");
+      }
+    });
   }
 }
