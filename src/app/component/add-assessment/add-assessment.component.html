@@ -1,0 +1,51 @@
+<p>add-assessment works!</p>
+
+<form [formGroup]="assessmentForm">
+    <mat-card class="example-card">
+        <mat-card-content>
+            <p>
+                Assessment Name:
+              <mat-form-field appearance="outline" class="textarea">
+                <input type="text" matInput formControlName="assessmentName" />
+              </mat-form-field>
+            </p>
+          </mat-card-content>
+      <mat-card-content>
+        <p>
+            Description:
+          <mat-form-field appearance="outline" class="textarea">
+            <input type="text" matInput formControlName="description" />
+          </mat-form-field>
+        </p>
+      </mat-card-content>
+       <mat-card-content>
+            <p>
+                Type:
+              <mat-form-field appearance="outline" class="textarea">
+                <input type="text" matInput formControlName="type" />
+              </mat-form-field>
+            </p>
+          </mat-card-content>
+          <mat-card-content>
+            <p>
+                Course ID:
+              <mat-form-field appearance="outline" class="textarea">
+                <input type="text" matInput formControlName="courseId" />
+              </mat-form-field>
+            </p>
+          </mat-card-content>
+
+      <mat-card-actions>
+        Trainer Id:
+        <mat-form-field appearance="outline">
+          <input type="text" matInput formControlName="trainerId" />
+        </mat-form-field>
+      </mat-card-actions>
+
+    </mat-card>
+  </form>
+  <mat-dialog-actions >
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="assessment" cdkFocusInitial (click)="addAssessment()">ADD</button>
+  </mat-dialog-actions>
+

@@ -1,0 +1,34 @@
+
+<form [formGroup]="assignmentForm">
+    <mat-card class="example-card">
+
+      <mat-card-header>
+        Question:
+        <mat-card-title>
+          <mat-form-field appearance="outline">
+            <input type="text" matInput formControlName="question" />
+          </mat-form-field>
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p>
+            Answer:
+          <mat-form-field appearance="outline" class="textarea">
+            <input type="text" matInput formControlName="answer" />
+          </mat-form-field>
+        </p>
+      </mat-card-content>
+
+      <mat-card-actions>
+        Score:
+        <mat-form-field appearance="outline">
+          <input type="text" matInput formControlName="assignmentScore" />
+        </mat-form-field>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  <mat-dialog-actions >
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="assignment" cdkFocusInitial (click)="addAssignment()">ADD</button>
+  </mat-dialog-actions>

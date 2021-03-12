@@ -1,0 +1,67 @@
+<form [formGroup]="quizForm">
+    <mat-card class="example-card">
+
+        <mat-card-content>
+            <p>
+                Question:
+              <mat-form-field appearance="outline" class="textarea">
+                <input type="text" matInput formControlName="question" />
+              </mat-form-field>
+            </p>
+          </mat-card-content>
+
+          <mat-card-content>
+            <p>
+                Option A:
+              <mat-form-field appearance="outline" class="textarea">
+                <input type="text" matInput formControlName="optionA" />
+              </mat-form-field>
+            </p>
+          </mat-card-content>
+          <mat-card-content>
+            <p>
+                Option B:
+              <mat-form-field appearance="outline" class="textarea">
+                <input type="text" matInput formControlName="optionB" />
+              </mat-form-field>
+            </p>
+          </mat-card-content>
+          <mat-card-content>
+            <p>
+                Option C:
+              <mat-form-field appearance="outline" class="textarea">
+                <input type="text" matInput formControlName="optionC" />
+              </mat-form-field>
+            </p>
+          </mat-card-content>
+          <mat-card-content>
+            <p>
+                Option D:
+              <mat-form-field appearance="outline" class="textarea">
+                <input type="text" matInput formControlName="optionD" />
+              </mat-form-field>
+            </p>
+          </mat-card-content>
+
+      <mat-card-content>
+        <p>
+            Answer:
+          <mat-form-field appearance="outline" class="textarea">
+            <input type="number" matInput formControlName="answer" />
+          </mat-form-field>
+        </p>
+      </mat-card-content>
+
+      <mat-card-actions>
+        Score:
+        <mat-form-field appearance="outline">
+          <input type="number" matInput formControlName="quizScore" />
+        </mat-form-field>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  <mat-dialog-actions >
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="quiz" cdkFocusInitial (click)="addQuiz()">Add</button>
+  </mat-dialog-actions>
+

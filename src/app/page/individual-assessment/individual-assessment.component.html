@@ -1,0 +1,78 @@
+
+<div *ngIf="toggle; else elseBlock">
+<mat-card>
+    <mat-card-title>{{assessment.assessmentName}}</mat-card-title>
+    <mat-card-subtitle>Description :{{assessment.description}} </mat-card-subtitle>
+    <mat-card-subtitle>Score :{{assessment.score}} </mat-card-subtitle>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+        <button mat-raised-button color="accent" class="text-upper" (click)="editAssessment()">Edit</button>
+        <button mat-raised-button class="text-upper" (click)="deleteAssessment()">Delete</button>
+    </mat-card-actions>
+</mat-card>
+<h2>{{assessment.type}}</h2>
+</div>
+<ng-template #elseBlock>
+  <form [formGroup]="updationForm">
+  <mat-card-header>
+    <mat-card-title>
+      Title
+      <mat-form-field appearance="outline">
+        <input type="text" matInput formControlName="assessmentName" />
+      </mat-form-field>
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p>Description
+      <mat-form-field appearance="outline" class="textarea">
+        <input type="text" matInput formControlName="description" />
+      </mat-form-field>
+    </p>
+  </mat-card-content>
+  <button mat-button color="accent" class="text-upper" (click)="updateAssessment()">save</button>
+</form>
+</ng-template>
+
+<div *ngIf="quizBool">
+  <button mat-button class="inline" 
+   (click)="addQuizDialog()" >
+    <mat-icon>add</mat-icon>
+    <mat-label>add quiz</mat-label>
+  </button>
+<table>
+    <tr *ngFor="let quiz of assessment.quizzes">
+      <td>
+        <app-show-quiz 
+        [quiz]="quiz"
+      (updatedQuiz)="updatedQuizHandler($event)"
+      (removeItem)="removeQuizHandler($event)"></app-show-quiz>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div *ngIf="assignBool">
+  
+  <button mat-button class="inline" 
+   (click)="addAssignemntDialog()" >
+    <mat-icon>add</mat-icon>
+    <mat-label>add assignment</mat-label>
+  </button>
+  <table>
+    <tr *ngFor="let assignment of assessment.assignments">
+      <td>
+        <app-show-assignment 
+        [assignment]="assignment" 
+        (updatedAssignment)="updatedAssignmentHandler($event)"
+        (removeItem)="deleteAssignmentHandler($event)"></app-show-assignment>
+        {{assignment.assignmentId}}
+      </td>
+    </tr>
+  </table>
+</div>
+<button mat-button color="accent" class="text-upper" (click)="addTrainingMaterial()">Add Training Material</button>
+<button mat-button color="accent" class="text-upper" (click)="viewTrend()">View Trend</button>
+
+
+

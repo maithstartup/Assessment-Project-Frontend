@@ -1,0 +1,15 @@
+<app-nav-bar>
+</app-nav-bar>
+<button mat-button class="inline" 
+   (click)="addAssignemntDialog()" >
+    <mat-icon>add</mat-icon>
+    <mat-label>add</mat-label>
+  </button>
+<table>
+    <tr *ngFor="let assessment of assessmentList">
+      <td>
+        <app-show-assessment [data]="assessment" 
+                      (show)="showHandler($event)"></app-show-assessment>
+      </td>
+    </tr>
+  </table>

@@ -1,0 +1,12 @@
+<mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{data.assessmentName}}</mat-card-title>
+      <mat-card-subtitle>Total Marks: {{ data.score }}</mat-card-subtitle>
+      <mat-card-subtitle>Type: {{ data.type }}</mat-card-subtitle>
+        
+    </mat-card-header>
+        <mat-card-content>{{data.description}}</mat-card-content>
+        <button mat-raised-button color="primary" (click)="showAssessment()">Show</button>
+  
+  </mat-card>
