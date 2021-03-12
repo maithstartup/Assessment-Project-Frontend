@@ -16,6 +16,8 @@ import { Observable } from 'rxjs';
 import { Trainer } from 'src/app/model/Trainer';
 import { TrainerService } from 'src/app/service/trainer/trainer.service';
 
+const googleId='331060380462-d27i3dlgau7nivh0n98p1cs9k1gqrijn.apps.googleusercontent.com'
+
 const googleLogoURL =
   "https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg";
 
@@ -53,7 +55,7 @@ export class LoginComponent implements OnInit {
     window['googleSDKLoaded'] = () => {
       window['gapi'].load('auth2', () => {
         this.auth2 = window['gapi'].auth2.init({
-          client_id: '331060380462-d27i3dlgau7nivh0n98p1cs9k1gqrijn.apps.googleusercontent.com',
+          client_id: googleId ,
           cookiepolicy: 'single_host_origin',
           scope: 'profile email'
         });

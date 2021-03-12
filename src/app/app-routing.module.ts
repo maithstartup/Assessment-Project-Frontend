@@ -8,7 +8,7 @@ import {CandidateAssessmentComponent} from './page/candidate-assessment/candidat
 import {TrainingMaterialComponent} from './page/training-material/training-material.component'
 import {TrendComponent} from './page/trend/trend.component'
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'assessments', component: AssessmentComponent },
   { path: 'individual', component: IndividualAssessmentComponent },
