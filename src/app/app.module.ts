@@ -22,6 +22,7 @@ import { AddAssessmentComponent } from './component/add-assessment/add-assessmen
 import { AddQuizComponent } from './component/add-quiz/add-quiz.component';
 import { TrendComponent } from './page/trend/trend.component';
 import {Chart} from 'node_modules/chart.js'
+import {ChartsModule} from 'ng2-charts'
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import {Chart} from 'node_modules/chart.js'
     ReactiveFormsModule,
     AppMaterialModule,
     BrowserAnimationsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
