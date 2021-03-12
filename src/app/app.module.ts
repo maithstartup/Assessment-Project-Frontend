@@ -19,6 +19,9 @@ import { ShowQuizComponent } from './component/show-quiz/show-quiz.component';
 import { ShowAssignmentComponent } from './component/show-assignment/show-assignment.component';
 import { AddAssignmentComponent } from './component/add-assignment/add-assignment.component';
 import { AddAssessmentComponent } from './component/add-assessment/add-assessment.component';
+import { AddQuizComponent } from './component/add-quiz/add-quiz.component';
+import { TrendComponent } from './page/trend/trend.component';
+import {Chart} from 'node_modules/chart.js'
 
 
 @NgModule({
@@ -35,7 +38,9 @@ import { AddAssessmentComponent } from './component/add-assessment/add-assessmen
     ShowQuizComponent,
     ShowAssignmentComponent,
     AddAssignmentComponent,
-    AddAssessmentComponent
+    AddAssessmentComponent,
+    AddQuizComponent,
+    TrendComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,7 @@ import { AddAssessmentComponent } from './component/add-assessment/add-assessmen
     FormsModule,
     ReactiveFormsModule,
     AppMaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

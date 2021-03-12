@@ -6,7 +6,7 @@ import {AssessmentComponent} from './page/assessment/assessment.component'
 import {IndividualAssessmentComponent} from './page/individual-assessment/individual-assessment.component'
 import {CandidateAssessmentComponent} from './page/candidate-assessment/candidate-assessment.component'
 import {TrainingMaterialComponent} from './page/training-material/training-material.component'
-
+import {TrendComponent} from './page/trend/trend.component'
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'individual', component: IndividualAssessmentComponent },
   { path: 'score', component: CandidateAssessmentComponent },
   { path: 'material', component: TrainingMaterialComponent },
+  { path: 'trend', component: TrendComponent },
   
 
 ];

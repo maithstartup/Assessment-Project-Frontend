@@ -1,3 +1,4 @@
+
 <div *ngIf="toggle; else elseBlock">
 <mat-card>
     <mat-card-title>{{assessment.assessmentName}}</mat-card-title>
@@ -12,7 +13,6 @@
 <h2>{{assessment.type}}</h2>
 </div>
 <ng-template #elseBlock>
-  "helloworld"
   <form [formGroup]="updationForm">
   <mat-card-header>
     <mat-card-title>
@@ -35,6 +35,11 @@
 </ng-template>
 
 <div *ngIf="quizBool">
+  <button mat-button class="inline" 
+   (click)="addQuizDialog()" >
+    <mat-icon>add</mat-icon>
+    <mat-label>add quiz</mat-label>
+  </button>
 <table>
     <tr *ngFor="let quiz of assessment.quizzes">
       <td>
@@ -42,7 +47,6 @@
         [quiz]="quiz"
       (updatedQuiz)="updatedQuizHandler($event)"
       (removeItem)="removeQuizHandler($event)"></app-show-quiz>
-        {{quiz.quizId}}
       </td>
     </tr>
   </table>
@@ -53,7 +57,7 @@
   <button mat-button class="inline" 
    (click)="addAssignemntDialog()" >
     <mat-icon>add</mat-icon>
-    <mat-label>add</mat-label>
+    <mat-label>add assignment</mat-label>
   </button>
   <table>
     <tr *ngFor="let assignment of assessment.assignments">
@@ -67,6 +71,8 @@
     </tr>
   </table>
 </div>
+<button mat-button color="accent" class="text-upper" (click)="addTrainingMaterial()">Add Training Material</button>
+<button mat-button color="accent" class="text-upper" (click)="viewTrend()">View Trend</button>
 
 
 

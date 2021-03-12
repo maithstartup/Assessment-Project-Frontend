@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 import { NavBarComponent } from 'src/app/component/nav-bar/nav-bar.component';
 import { ShowAssessmentComponent } from 'src/app/component/show-assessment/show-assessment.component';
 import { AddAssignmentComponent } from 'src/app/component/add-assignment/add-assignment.component';
+import { AddQuizComponent } from 'src/app/component/add-quiz/add-quiz.component';
 
 @Component({
   selector: 'app-individual-assessment',
@@ -34,7 +35,7 @@ export class IndividualAssessmentComponent implements OnInit {
   type:string;
 
   assignment:Partial<Assignment>={}
-   quiz:Partial<Quiz>={};
+  quiz:Partial<Quiz>={};
   data = {
     assessmentName:"temp-edited-assesment",
 
@@ -244,5 +245,45 @@ export class IndividualAssessmentComponent implements OnInit {
         console.log("cannot");
       }
     });
+  }
+  addQuizDialog() {
+    console.log("hey quiz")
+    const dialogRef = this.dialog.open(AddQuizComponent, {
+      width: '800px',
+      data: this.quiz,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      console.log(result)
+      if (
+        result != undefined &&
+        result.question &&
+        result.answer &&
+        result.quizScore
+      ) {
+        this.quiz = result;
+        this.quiz.assessmentId =this.assessment.assessmentId
+        console.log(this.quiz)
+        this.quizService.addQuizRequest(this.quiz)
+          .subscribe(
+            (res) => {
+              console.log(res);
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+         location.reload();
+      } else {
+        console.log("cannot");
+      }
+    });
+  }
+  addTrainingMaterial(){
+    this.router.navigateByUrl('material')
+  }
+  viewTrend(){
+    this.router.navigateByUrl('trend')
   }
 }

@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./candidate-assessment.component.css']
 })
 export class CandidateAssessmentComponent implements OnInit {
-
+  out:any
   data={
     candidateId:1,
     assessmentId:16,
@@ -37,8 +37,8 @@ export class CandidateAssessmentComponent implements OnInit {
     this.candidateAssessmentService.addScoreRequest(this.profileForm.value)
       .subscribe(
         (res) => {
-          var out = res;
-          console.log(out);
+           this.out = "added";
+          console.log(this.out);
         },
         (err) => {
           console.log(err);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ElementRef } from '@angular/core';
 import { ViewChild } from '@angular/core';
@@ -26,7 +26,7 @@ const googleLogoURL =
 })
 export class LoginComponent implements OnInit {
 
-  trainer: Trainer;
+  trainer: Partial<Trainer>={};
   errorMessage: string = '';
   hide: boolean;
 
@@ -40,13 +40,16 @@ export class LoginComponent implements OnInit {
   @ViewChild('loginRef', { static: true }) loginElement: ElementRef;
 
   constructor(private fb: FormBuilder,private router: Router,
-    private trainerService: TrainerService) { }
+    private trainerService: TrainerService,
+    private domSanitizer: DomSanitizer,
+    private ngZone: NgZone,) { }
 
   ngOnInit(): void {
+    this.googleSDK();
   }
 
   googleSDK() {
-
+    console.log("hey")
     window['googleSDKLoaded'] = () => {
       window['gapi'].load('auth2', () => {
         this.auth2 = window['gapi'].auth2.init({
@@ -94,8 +97,34 @@ export class LoginComponent implements OnInit {
   }
 
   prepareLoginButton() {
+    this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
+      (googleUser) => {
 
-    console.log("prepare")
+        let profile = googleUser.getBasicProfile();
+        console.log('Token || ' + googleUser.getAuthResponse().id_token);
+        console.log('ID: ' + profile.getId());
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail());
+
+        this.trainer.trainerEmail = profile.getEmail();
+
+        this.ngZone.run(() => this.trainerService.trainerGoogleLoginRequest(this.trainer).subscribe(
+          (res) => {
+            this.trainerService = res;
+            this.loginForm.reset;
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('token', JSON.stringify(this.trainer));
+            this.router.navigateByUrl('/assessments');
+          },
+          (error) => {
+            if (typeof error.error == typeof 'string')
+              this.errorMessage = error.error;
+          }
+        ));
+      }, (error) => {
+        alert(JSON.stringify(error, undefined, 2));
+      });
   }
 }
 
